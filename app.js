@@ -99,5 +99,5 @@ if(marcador_general == (cuestionario_historia.length + cuestionario_geografia.le
     console.log("Respondiste todas las preguntas correctamente!");
 }
 else{
-    console.log("te faltaron " , ((cuestionario_historia.length + cuestionario_geografia.length + cuestionario_cultura.length) - marcador_general))
+    console.log("te faltaron " , ((cuestionario_historia.length + cuestionario_geografia.length + cuestionario_cultura.length) - marcador_general) , " para el puntaje perfecto")
 }
