@@ -102,13 +102,12 @@ traerPregunta();   ///genero pregunta y opciones
 
 function responder(){   //Toma valor del input y compara con la respuesta de la pregunta del array
     if(respuesta.value == preguntaActual.answer){
-        console.log("correcto!");
         marcador++
-        resultadoRespuesta.innerHTML = "Correcto!"
+        resultadoRespuesta.innerHTML = "Correcto! Respondiste " +  preguntaActual.answer;
     }
     else{
-        console.log("incorrecto, la respuesta era " , preguntaActual.answer)
-        resultadoRespuesta.innerHTML = "Incorrecto!"
+        //console.log("incorrecto, la respuesta era " , preguntaActual.answer)
+        resultadoRespuesta.innerHTML = "Incorrecto! La respuesta era " +  preguntaActual.answer;
     }
     siguiente();
 }
@@ -116,13 +115,9 @@ function responder(){   //Toma valor del input y compara con la respuesta de la 
 
     function siguiente(){
         if(contadorPreguntas === cuestionario.length){
-            console.log("quiz finalizado");
-            console.log("Tu puntaje general fue:");
-            console.log(marcador , " puntos en total.");
-
+            resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total."
             if(marcador == cuestionario.length){
-                console.log("Respondiste todas las preguntas correctamente!");
-                resultadoRespuesta.innerHTML = "Puntaje Perfecto!"
+                resultadoRespuesta.innerHTML = "Puntaje Perfecto! Respondiste todas las preguntas correctamente!"
             }
             else{
             }
