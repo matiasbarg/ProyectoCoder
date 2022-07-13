@@ -3,6 +3,7 @@ const numeroPregunta = document.querySelector(".numeroPregunta");
 const textoPregunta = document.querySelector(".textoPregunta");
 const containerOpciones = document.querySelector(".containerOpciones");
 const resultadoRespuesta = document.querySelector(".resultadoRespuesta");
+const botonResponder = document.querySelector(".botonResponder")
 
 //ARRAY CON LAS PREGUNTAS - pregunta, opciones y respuesta
 
@@ -115,9 +116,10 @@ function responder(){   //Toma valor del input y compara con la respuesta de la 
 
     function siguiente(){
         if(contadorPreguntas === cuestionario.length){
-            resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total."
+            resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total.";
+            finalizar();
             if(marcador == cuestionario.length){
-                resultadoRespuesta.innerHTML = "Puntaje Perfecto! Respondiste todas las preguntas correctamente!"
+                resultadoRespuesta.innerHTML = "Puntaje Perfecto! Respondiste todas las preguntas correctamente!";
             }
             else{
             }
@@ -125,4 +127,8 @@ function responder(){   //Toma valor del input y compara con la respuesta de la 
         else{
             traerPregunta();
         }
+    }
+
+    function finalizar(){
+        botonResponder.classList.add("hidden");
     }

@@ -52,6 +52,11 @@ body{
     display: inline-block;
 }
 
+.hidden{
+    pointer-events: none;
+    display: none;
+}
+
 .cajaTrivia .numeroPregunta,
 .cajaTrivia .textoPregunta,
 .cajaTrivia .containerOpciones{
