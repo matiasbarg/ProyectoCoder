@@ -5,46 +5,6 @@ const containerOpciones = document.querySelector(".containerOpciones");
 const resultadoRespuesta = document.querySelector(".resultadoRespuesta");
 const botonResponder = document.querySelector(".botonResponder")
 
-//ARRAY CON LAS PREGUNTAS - pregunta, opciones y respuesta
-
-const cuestionario = [
-    {
-        q:'¿Quien descubrió América?',
-        options:['Colón', 'Magallanes', 'Shakespeare', 'Los Vikingos'],
-        answer:"Colón"
-    },
-    {
-        q:'¿Cuando se declaró la independencia de Argentina?',
-        options:['2001', '1492', '1816', '1994'],
-        answer:"1816"
-    },
-    {
-        q:'¿Quien fue el primer presidente de Argentina?',
-        options:['San Martin', 'Belgrano', 'Rivadavia', 'Washington'],
-        answer:"Rivadavia"
-    },
-    {
-        q:'¿Cual es la montaña mas alta del mundo?',
-        options:['Aconcagua', 'Los Andes', 'Uritorco', 'Everest'],
-        answer:"Everest"
-    },
-    {
-        q:'¿Cuantos decimales tiene el número Pi π?',
-        options:['100', '1000', 'Infinitos', '0'],
-        answer:"Infinitos"
-    },
-    {
-        q:'¿Cuantos continentes hay en el mundo?',
-        options:['6', '7', '8'],
-        answer:"7"
-    },
-    {
-        q:'¿Quién escribió "Romeo y Julieta"?',
-        options:['Cervantes', 'Quevedo', 'Shakespeare'],
-        answer:"Shakespeare"
-    },
-]
-
 
 let preguntasDisponibles = [];
 let opcionesDisponibles = [];
@@ -79,6 +39,14 @@ function traerPregunta(){
     const index1 = preguntasDisponibles.indexOf(indexPreguntas);
     preguntasDisponibles.splice(index1,1);  //saco la pregunta actual de preguntas disponibles
 
+
+    //mostrar imagen si la propiedad foto existe 
+    if(preguntaActual.hasOwnProperty("foto")){
+        const img = document.createElement("img");
+        img.src = preguntaActual.foto;
+        textoPregunta.appendChild(img);
+    }
+
     const largoOpciones = preguntaActual.options.length; //cantidad de opciones a elegir
     for(let i=0; i<largoOpciones; i++){
         opcionesDisponibles.push(i)
@@ -101,14 +69,24 @@ function traerPregunta(){
 
 traerPregunta();   ///genero pregunta y opciones
 
-function responder(){   //Toma valor del input y compara con la respuesta de la pregunta del array
+let textoInput = document.getElementById("textoInput");
+
+let answer = document.getElementById("answer")
+answer.addEventListener("click" , responder);
+
+
+//Toma valor del input y compara con la respuesta de la pregunta del array
+function responder(){   
     if(respuesta.value == preguntaActual.answer){
         marcador++
         resultadoRespuesta.innerHTML = "Correcto! Respondiste " +  preguntaActual.answer;
+        resultadoRespuesta.classList.add("correcto");
+        resultadoRespuesta.classList.remove("incorrecto");
     }
     else{
-        //console.log("incorrecto, la respuesta era " , preguntaActual.answer)
         resultadoRespuesta.innerHTML = "Incorrecto! La respuesta era " +  preguntaActual.answer;
+        resultadoRespuesta.classList.add("incorrecto");
+        resultadoRespuesta.classList.remove("correcto");
     }
     siguiente();
 }
@@ -129,6 +107,13 @@ function responder(){   //Toma valor del input y compara con la respuesta de la 
         }
     }
 
+    //Eliminar todos los elementos del box salvo el resultado al fnalizar
+
     function finalizar(){
-        botonResponder.classList.add("hidden");
+        botonResponder.remove();
+        respuesta.remove();
+        textoPregunta.remove();
+        containerOpciones.remove();
+        resultadoRespuesta.classList.remove("correcto" , "incorrecto");
+        resultadoRespuesta.classList.add("margen"); //le doy mas margen arriba y abajo al resultado ya que queda solo en el box
     }
