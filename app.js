@@ -3,12 +3,37 @@ const numeroPregunta = document.querySelector(".numeroPregunta");
 const textoPregunta = document.querySelector(".textoPregunta");
 const containerOpciones = document.querySelector(".containerOpciones");
 const resultadoRespuesta = document.querySelector(".resultadoRespuesta");
+<<<<<<< HEAD
 //const botonResponder = document.querySelector(".botonResponder")
 //const inputResp = document.getElementById("respuesta");
 const txtanswr = document.getElementsByClassName(".option");
+=======
+const botonResponder = document.querySelector(".botonResponder")
 
 
+let preguntasDisponibles = [];
+let opcionesDisponibles = [];
+let contadorPreguntas = 0;
+let preguntaActual;
+let marcador = 0
 
+
+//PREGUNTAS DISPONIBLES
+
+function definirPreguntasDisponibles(){
+    const totalPreguntas = cuestionario.length;
+    for(let i=0; i<totalPreguntas; i++){
+        preguntasDisponibles.push(cuestionario[i])
+    }
+}
+
+definirPreguntasDisponibles();
+>>>>>>> dea704903f7d2ee20deb80c2129f2319038a33f7
+
+
+//TRAER PREGUNTA
+
+<<<<<<< HEAD
 let next = document.getElementById("siguiente")
 next.addEventListener("click" , siguiente);
 
@@ -34,6 +59,8 @@ function definirPreguntasDisponibles(){
 
 //TRAER PREGUNTA
 
+=======
+>>>>>>> dea704903f7d2ee20deb80c2129f2319038a33f7
 function traerPregunta(){
     numeroPregunta.innerHTML = "Pregunta " + (contadorPreguntas + 1) + " de " + cuestionario.length; //contador de preguntas
 
@@ -68,14 +95,20 @@ function traerPregunta(){
         
         const option = document.createElement("div");
         option.innerHTML = preguntaActual.options[optionIndex];
+<<<<<<< HEAD
         option.id = optionIndex;
         option.className = "option";
         containerOpciones.appendChild(option);
         option.setAttribute("onclick" , "responder(this)")
+=======
+        option.className = "option";
+        containerOpciones.appendChild(option)
+>>>>>>> dea704903f7d2ee20deb80c2129f2319038a33f7
     }
     contadorPreguntas++
 }
 
+<<<<<<< HEAD
 
 //Toma valor del id del elemento option clickeado y lo compara con el valor respuesta del array del cuestionario
 function responder(element){
@@ -109,7 +142,30 @@ function restringido(){
     const largoOpciones = containerOpciones.children.length;
     for(let i=0; i<largoOpciones; i++){
         containerOpciones.children[i].classList.add("respondida")
+=======
+traerPregunta();   ///genero pregunta y opciones
+
+let textoInput = document.getElementById("textoInput");
+
+let answer = document.getElementById("answer")
+answer.addEventListener("click" , responder);
+
+
+//Toma valor del input y compara con la respuesta de la pregunta del array
+function responder(){   
+    if(respuesta.value == preguntaActual.answer){
+        marcador++
+        resultadoRespuesta.innerHTML = "Correcto! Respondiste " +  preguntaActual.answer;
+        resultadoRespuesta.classList.add("correcto");
+        resultadoRespuesta.classList.remove("incorrecto");
     }
+    else{
+        resultadoRespuesta.innerHTML = "Incorrecto! La respuesta era " +  preguntaActual.answer;
+        resultadoRespuesta.classList.add("incorrecto");
+        resultadoRespuesta.classList.remove("correcto");
+>>>>>>> dea704903f7d2ee20deb80c2129f2319038a33f7
+    }
+    siguiente();
 }
 
 
@@ -124,6 +180,7 @@ function restringido(){
             }
         }
         else{
+<<<<<<< HEAD
 
             traerPregunta();
         }
@@ -148,3 +205,19 @@ function restringido(){
         console.log(this.txtanswr.value);
         inputResp.innerHTML = option.value;
     }*/
+=======
+            traerPregunta();
+        }
+    }
+
+    //Eliminar todos los elementos del box salvo el resultado al fnalizar
+
+    function finalizar(){
+        botonResponder.remove();
+        respuesta.remove();
+        textoPregunta.remove();
+        containerOpciones.remove();
+        resultadoRespuesta.classList.remove("correcto" , "incorrecto");
+        resultadoRespuesta.classList.add("margen"); //le doy mas margen arriba y abajo al resultado ya que queda solo en el box
+    }
+>>>>>>> dea704903f7d2ee20deb80c2129f2319038a33f7
