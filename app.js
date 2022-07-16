@@ -77,12 +77,7 @@ function traerPregunta(){
 }
 
 
-
-
-
-
-
-//Toma valor del input y compara con la respuesta de la pregunta del array
+//Toma valor del id del elemento option clickeado y lo compara con el valor respuesta del array del cuestionario
 function responder(element){
     const id = parseInt(element.id);
     if(id === preguntaActual.answer){
@@ -107,7 +102,7 @@ function responder(element){
         element.classList.add("error");
         //document.getElementsByTagName("input")[0].value = "";
     }
-    restringido()
+    restringido();
 }
 
 function restringido(){
