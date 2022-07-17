@@ -4,13 +4,13 @@
 const cuestionario = [
     {
         q:'¿Quién es esta persona?',
-        options:['Charly Garcia', 'Spinetta', 'Pity Alvarez', 'Fito Paez'],
+        options:['Charly Garcia', 'Luis Alberto Spinetta', 'Pity Alvarez', 'Fito Paez'],
         answer:1,
         foto: "img/spinetta.jpg"
     },
     {
         q:'¿Quién es esta persona?',
-        options:['Einstein', 'Hawkins', 'Eddison', 'Tesla'],
+        options:['Albert Einstein', 'Stephen Hawkins', 'Thommas Eddison', 'Nikola Tesla'],
         answer:0,
         foto: "img/einstein.jpg"
     },
@@ -22,7 +22,8 @@ const cuestionario = [
     },
     {
         q:'¿Quién descubrió América?',
-        options:['Colón', 'Magallanes', 'Shakespeare', 'Los Vikingos'],
+        options:['Cristobal Colón', 'Fernando de Magallanes', 'William Shakespeare', 'Los Vikingos'],
+        foto: "img/colon.jpg",
         answer:0,
     },
 
@@ -33,12 +34,13 @@ const cuestionario = [
     },
     {
         q:'¿Quién fue el primer presidente de Argentina?',
-        options:['San Martin', 'Belgrano', 'Rivadavia', 'Washington'],
+        options:['San Martin', 'Manuel Belgrano', 'Bernardino Rivadavia', 'George Washington'],
+        foto: "img/rivadavia.jpg",
         answer:2,
     },
     {
         q:'¿Cual es la montaña mas alta del mundo?',
-        options:['Aconcagua', 'Los Andes', 'Uritorco', 'Everest'],
+        options:['Cerro Aconcagua', 'Cordillera de Los Andes', 'Cerro Uritorco', 'Monte Everest'],
         answer:3,
     },
     {
@@ -48,12 +50,13 @@ const cuestionario = [
     },
     {
         q:'¿Cuantos continentes hay en el mundo?',
-        options:['6', '7', '8'],
+        options:['6', '7', '8' , '9'],
         answer:1,
     },
     {
         q:'¿Quién escribió "Romeo y Julieta"?',
-        options:['Cervantes', 'Quevedo', 'Shakespeare'],
+        options:['Miguel de Cervantes', 'Francisco de Quevedo', 'William Shakespeare'],
+        foto: "img/romeo.jpg",
         answer:2,
     },
 ]

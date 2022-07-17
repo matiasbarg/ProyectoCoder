@@ -5,7 +5,7 @@ const containerOpciones = document.querySelector(".containerOpciones");
 const resultadoRespuesta = document.querySelector(".resultadoRespuesta");
 //const botonResponder = document.querySelector(".botonResponder")
 //const inputResp = document.getElementById("respuesta");
-const txtanswr = document.getElementsByClassName(".option");
+//const txtanswr = document.getElementsByClassName(".option");
 
 
 //TRAER PREGUNTA
@@ -59,6 +59,7 @@ function traerPregunta(){
     for(let i=0; i<largoOpciones; i++){
         opcionesDisponibles.push(i)
     }
+    
     containerOpciones.innerHTML = '';
 
 
@@ -78,7 +79,7 @@ function traerPregunta(){
 }
 
 
-//Toma valor del id del elemento option clickeado y lo compara con el valor respuesta del array del cuestionario
+//Toma valor del id del elemento option clickeado y lo compara con el valor respuesta en array
 function responder(element){
     const id = parseInt(element.id);
     if(id === preguntaActual.answer){
@@ -111,7 +112,6 @@ function restringido(){
     for(let i=0; i<largoOpciones; i++){
         containerOpciones.children[i].classList.add("respondida")
     }
-
 }
 
 
@@ -127,13 +127,13 @@ function restringido(){
         }
         else{
 
-            traerPregunta();
+        traerPregunta();
         }
     }
 
-    //Eliminar todos los elementos del box salvo el resultado al fnalizar
 
-    function finalizar(){
+
+    function finalizar(){     //Eliminar todos los elementos del box salvo el resultado al finalizar /// CAMBIAR POR ESTADISTICAS Y BOTON PARA REINICIAR
         next.remove();
         textoPregunta.remove();
         containerOpciones.remove();
@@ -145,8 +145,3 @@ function restringido(){
         definirPreguntasDisponibles();
         traerPregunta();
     }
-/*
-    txtanswr.onclick = function(){
-        console.log(this.txtanswr.value);
-        inputResp.innerHTML = option.value;
-    }*/
