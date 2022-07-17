@@ -130,6 +130,7 @@ body{
     background-color: #cccccc;
     padding-left: 10px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .cajaTrivia .containerOpciones .option:hover{
