@@ -2,23 +2,24 @@
 const numeroPregunta = document.querySelector(".numeroPregunta");
 const textoPregunta = document.querySelector(".textoPregunta");
 const containerOpciones = document.querySelector(".containerOpciones");
+const cajaTrivia = document.querySelector(".cajaTrivia");
+const cajaTimer = document.querySelector(".timer");
+const timeCount = cajaTrivia.querySelector(".timer p span");
+const indicadorRespuestasContainer = document.querySelector(".indicadorRespuestas");
 const resultadoRespuesta = document.querySelector(".resultadoRespuesta");
-//const botonResponder = document.querySelector(".botonResponder")
-//const inputResp = document.getElementById("respuesta");
-//const txtanswr = document.getElementsByClassName(".option");
+const next = document.querySelector(".btn");
+const resultBox = document.querySelector(".result-box");
 
-
-//TRAER PREGUNTA
-
-let next = document.getElementById("siguiente")
-next.addEventListener("click" , siguiente);
 
 let preguntasDisponibles = [];
 let opcionesDisponibles = [];
 let contadorPreguntas = 0;
 let preguntaActual;
-let marcador = 0;
-let errores = 0;
+let respuestasCorrectas = 0;
+let intentos = 0;
+let marcador = 0
+let cronometro;
+let timeValue = 10;
 
 
 //PREGUNTAS DISPONIBLES
@@ -32,7 +33,6 @@ function definirPreguntasDisponibles(){
 
 
 
-
 //TRAER PREGUNTA
 
 function traerPregunta(){
@@ -41,13 +41,10 @@ function traerPregunta(){
     const indexPreguntas = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)]  //random para las preguntas
 
     preguntaActual = indexPreguntas;
-
     textoPregunta.innerHTML = preguntaActual.q;   //texto pregunta actual
     
     const index1 = preguntasDisponibles.indexOf(indexPreguntas);
     preguntasDisponibles.splice(index1,1);  //saco la pregunta actual de preguntas disponibles
-
-
     //mostrar imagen si la propiedad foto existe 
     if(preguntaActual.hasOwnProperty("foto")){
         const img = document.createElement("img");
@@ -59,7 +56,6 @@ function traerPregunta(){
     for(let i=0; i<largoOpciones; i++){
         opcionesDisponibles.push(i)
     }
-    
     containerOpciones.innerHTML = '';
 
 
@@ -72,39 +68,36 @@ function traerPregunta(){
         option.innerHTML = preguntaActual.options[optionIndex];
         option.id = optionIndex;
         option.className = "option";
-        containerOpciones.appendChild(option);
-        option.setAttribute("onclick" , "responder(this)")
+        containerOpciones.appendChild(option)
+        option.setAttribute("onclick" , "resolver(this)")
     }
-    contadorPreguntas++
+    clearInterval(cronometro);
+    startTimer(timeValue);
+    contadorPreguntas++;
 }
 
-
-//Toma valor del id del elemento option clickeado y lo compara con el valor respuesta en array
-function responder(element){
+function resolver(element){
+    clearInterval(cronometro);
     const id = parseInt(element.id);
     if(id === preguntaActual.answer){
-        marcador++
-        resultadoRespuesta.innerHTML = "Correcto! Aciertos: " + marcador;
-        resultadoRespuesta.classList.add("correcto");
-        resultadoRespuesta.classList.remove("incorrecto");
-        element.classList.add("acierto");
-        //document.getElementsByTagName("input")[0].value = "";
+        element.classList.add("correcto");
+        actualizarIndicadorRespuestas("correcto");
+        respuestasCorrectas++;
+        marcador++;
+        
     }
     else{
-        errores++;
-        resultadoRespuesta.innerHTML = "Incorrecto! Fallos: " + errores;
-        resultadoRespuesta.classList.add("incorrecto");
-        resultadoRespuesta.classList.remove("correcto");
+        element.classList.add("incorrecto");
+        actualizarIndicadorRespuestas("incorrecto");
         const largoOpciones = containerOpciones.children.length;
         for(i=0; i<largoOpciones; i++){
             if(parseInt(containerOpciones.children[i].id) === preguntaActual.answer){
-                containerOpciones.children[i].classList.add("acierto");
+                containerOpciones.children[i].classList.add("correcto");
             }
         }
-        element.classList.add("error");
-        //document.getElementsByTagName("input")[0].value = "";
     }
-    restringido();
+    intentos++;
+    restringido()
 }
 
 function restringido(){
@@ -114,34 +107,139 @@ function restringido(){
     }
 }
 
-
-    function siguiente(){
-        if(contadorPreguntas === cuestionario.length){
-            resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total.";
-            finalizar();
-            if(marcador == cuestionario.length){
-                resultadoRespuesta.innerHTML = "Puntaje Perfecto! Respondiste todas las preguntas correctamente!";
-            }
-            else{
-            }
-        }
-        else{
-
-        traerPregunta();
-        }
+function indicadorRespuestas(){
+    const preguntasTotales = cuestionario.length;
+    for(let i=0; i<preguntasTotales; i++){
+        const indicador = document.createElement("div");
+        indicadorRespuestasContainer.appendChild(indicador);
     }
+}
+
+function actualizarIndicadorRespuestas(markType){
+    indicadorRespuestasContainer.children[contadorPreguntas-1].classList.add(markType)
+}
 
 
 
-    function finalizar(){     //Eliminar todos los elementos del box salvo el resultado al finalizar /// CAMBIAR POR ESTADISTICAS Y BOTON PARA REINICIAR
-        next.remove();
-        textoPregunta.remove();
-        containerOpciones.remove();
-        resultadoRespuesta.classList.remove("correcto" , "incorrecto");
-        resultadoRespuesta.classList.add("margen"); //le doy mas margen arriba y abajo al resultado ya que queda solo en el box
+function siguiente(){
+    resultadoRespuesta.innerHTML = "";
+    if(contadorPreguntas === cuestionario.length){
+        console.log("trivia finalizada");
+        //resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total.";
+        finalizar();
+        //if(marcador == cuestionario.length){
+        //    resultadoRespuesta.innerHTML = "Puntaje Perfecto! Respondiste todas las preguntas correctamente!";
+        //}
+        //else{
+        //}
     }
-
-    window.onload = function(){
-        definirPreguntasDisponibles();
+    else{
         traerPregunta();
     }
+    timeCount.style.background = "white";
+}
+
+    ///TEMPORIZADOR
+
+    function startTimer(time){
+        cronometro = setInterval(timer, 1000);
+        function timer(){
+            timeCount.textContent = time;
+            time--;
+            if(time < 0){
+                clearInterval(cronometro);
+                timeCount.textContent = "00";
+                timeCount.style.background = "red";
+                restringido();
+                //resultadoRespuesta.innerHTML = "Se acabó el tiempo";
+                //resultadoRespuesta.classList.add("incorrecto");
+                //resultadoRespuesta.classList.remove("correcto");
+                actualizarIndicadorRespuestas("incorrecto");
+                //errores++;
+            }
+            
+        }
+    }
+
+
+///////FINALIZAR FALTA!!!!!
+
+function finalizar(){ 
+    clearInterval(cronometro);    //Eliminar todos los elementos del box salvo el resultado al finalizar /// CAMBIAR POR ESTADISTICAS Y BOTON PARA REINICIAR
+    //cajaTimer.remove();
+    //indicadorRespuestasContainer.remove();
+    //timeCount.remove();
+    //next.remove();
+    //textoPregunta.remove();
+    //containerOpciones.remove();
+    cajaTrivia.classList.add("hidden");
+    resultBox.classList.remove("hidden");
+    resultadoRespuesta.classList.remove("correcto" , "incorrecto");
+    resultadoRespuesta.classList.add("margen"); //le doy mas margen arriba y abajo al resultado ya que queda solo en el box
+    resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total.";
+}
+
+/*
+function resetTrivia(){
+    contadorPreguntas = 0;
+    respuestasCorrectas = 0;
+    intentos = 0;
+    marcador = 0;
+}
+
+*/
+function reiniciar(){
+    window.location.reload();
+}
+
+
+
+function comenzar(){
+    preguntasDisponibles = [];
+    opcionesDisponibles = [];
+    definirPreguntasDisponibles();
+    traerPregunta();
+    indicadorRespuestas();
+}
+
+const username = document.getElementById("username");
+const guardar = document.getElementById("guardar");
+const tablaScore = document.querySelector(".tablaScore");
+const highScoreList = document.getElementById("highScoreList");
+
+
+const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+//const MAX_HIGH_SCORES = 10;
+
+
+username.addEventListener("keyup", () => {
+    guardar.disabled = !username.value;
+})
+
+guardarPuntaje = e => {
+    //console.log("cliqueo guardar");
+    e.preventDefault();
+    const score = {
+        score: marcador,
+        name: username.value,
+    };
+    highScores.push(score);
+
+    highScores.sort((a,b) =>  b.score - a.score);
+
+    highScores.splice(10);
+
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+    resultBox.classList.add("hidden");
+    tablaScore.classList.remove("hidden");
+    highScoreList.innerHTML = 
+    highScores.map( score => {
+    return `<li class="high-score">${score.name} ---------------------- ${score.score}</li>`;
+})
+.join("");
+}
+
+
+
+
+comenzar();

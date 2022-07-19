@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Entregable - simulador interactivo</title>
+    <title>Trivia - Preguntas y Respuestas</title>
 </head>
 <body>
 
@@ -13,21 +13,41 @@
         <div class="numeroPregunta">
             
         </div>
-        <div class="textoPregunta">
-            
+        <div class="timer">
+            <p>Tiempo restante <span class=".timer_sec">10</span></p>
         </div>
-        <div class="containerOpciones">
+        <div class="textoPregunta"> 
+
+        </div>
+            
+        
+        <div class="containerOpciones"> 
+
+        </div>
+        <div class="preguntaSiguiente">
+            <button type="button" class="btn" onclick="siguiente()">Siguiente</button>
+        </div>
+        
+        <div class="indicadorRespuestas">
+
+        </div>
     </div>
 
-    
-    <div class="botonSiguiente">
-        <button type="button" class="btn" id="siguiente" >Siguiente</button>
+
+    <div class="result-box hidden">
+        <div class="resultadoRespuesta"></div>
+        <h3>Ingrese su Nombre</h3>
+        <input type="text" id="username" placeholder="Nombre">
+        <button class="btn" id="guardar" onclick="guardarPuntaje(event)" disabled>Guardar</button>
+        <button class="btn" id="reiniciar" onclick="reiniciar()">Reiniciar</button>
+    </div>
+    <div class="tablaScore hidden">
+        <h1>Puntajes Máximos</h1>
+        <ul id="highScoreList"></ul>
+        <button class="btn" id="reiniciar" onclick="reiniciar()">Reiniciar</button>
     </div>
 
-    
-    <div class="resultadoRespuesta">
 
-    </div>
     <script src="cuestionario.js"></script>
     <script src="app.js"></script>
 

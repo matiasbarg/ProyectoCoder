@@ -35,13 +35,33 @@ body{
     font-weight: 500;
 }
 
+.timer{
+    margin-top: 10px;
+    text-align: end;
+    width: 100%;
+
+}
+
+.timer p{
+    font-size: 18px;
+    line-height: 50px;
+}
+
+.timer p span{
+    font-weight: 700;
+}
+
+.timer p span .red{
+    background-color: red;
+}
+
 .cajaTrivia .btn{
     margin-top: 20px;
 }
 
 .btn{
     padding: 15px 45px;
-    background-color: #08662f;
+    background-color: #0b863e;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -52,14 +72,18 @@ body{
     display: inline-block;
 }
 
+.btn:hover{
+    background-color: #08662f;
+}
+
 .hidden{
-    pointer-events: none;
     display: none;
 }
 
 .cajaTrivia .numeroPregunta,
 .cajaTrivia .textoPregunta,
-.cajaTrivia .containerOpciones{
+.cajaTrivia .containerOpciones
+.cajaTrivia .preguntaSiguiente {
     width: 100%;
     float: left;
 }
@@ -91,15 +115,80 @@ body{
 }
 
 
+.cajaTrivia .containerOpciones .option{
+    background-color: #cccccc;
+    padding: 15px;
+    font-size: 16px;
+    line-height: 15px;
+    color: #000000;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-transform: capitalize;
+    position: relative;
+    overflow: hidden;
+}
+
+.cajaTrivia .containerOpciones .option:hover{
+    background-color: #fffd6f;
+}
+
+.cajaTrivia .containerOpciones .option.respondida{
+    pointer-events: none;
+}
+
+.cajaTrivia .containerOpciones .option.correcto{
+    background-color: green;
+}
+
+.cajaTrivia .containerOpciones .option.incorrecto{
+    background-color: red;
+}
+
+
+.cajaTrivia .containerOpciones .option.correcto,
+.cajaTrivia .containerOpciones .option.incorrecto{
+    color: #ffffff;
+}
+
 .cajaTrivia .btn{
     margin: 15px 0;
 }
 
+
+.cajaTrivia .indicadorRespuestas{
+    border-top: 1px solid #cccccc;
+}
+
+.cajaTrivia .indicadorRespuestas div{
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    background-color: #cccccc;
+    border-radius: 5px;
+    margin-right: 3px;
+    margin-top: 12px;
+}
+
+.cajaTrivia .indicadorRespuestas div.correcto{
+    background-color: #cccccc;
+    background-image: url("/img/correcto.png");
+    background-size: cover;
+    background-position: center;
+}
+
+
+.cajaTrivia .indicadorRespuestas div.incorrecto{
+    background-color: #cccccc;
+    background-image: url("/img/incorrecto.png");
+    background-size: cover;
+    background-position: center;
+}
+
 .resultadoRespuesta{
     font-size: 22px;
-    line-height: 26px;
     font-weight: 400;
-    padding: 20px 0;
+    padding: 10px 0;
     margin: 0;
 }
 
@@ -109,42 +198,98 @@ body{
 .incorrecto{
     color: red;
 }
-/*
-.input{
-    margin: 30px 0;
-}
-*/
+
 .margen{
-    margin: 100px auto;
+    margin: 50px auto;
     text-align: center;
 }
 
-.containerOpciones{
-/*    background-color: #ffffff;
-    font-size: 18px;*/
-    line-height: 40px;
+.result-box{
+    max-width: 700px;
+    background-color: #ffffff;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+
+}
+
+.result-box h3{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.result-box input{
+    display: block;
+    margin: 40px auto ;
+    height: 30px;
+    width: 200px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+.result-box .btn{
+    display: block;
+    margin: 40px auto ;
+}
+
+.tablaScore{
+    max-width: 700px;
+    background-color: #ffffff;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+.tablaScore h1{
+    font-size: 20px;
+    margin: 20px auto;
+}
+
+
+.tablaScore ul{
+    margin: 50px;
+    
+}
+
+.tablaScore ul li{
+    list-style: none;
+    font-size: 20px;
+    margin: 20px auto;
+    padding-left: 0;
+}
+
+.tablaScore ul li:hover{
+    transform: scale(1.1);
+}
+/*
+
+
+.result-box h1{
+    font-size: 36px;
+    line-height: 42px;
+    color: #009688;
+}
+
+.result-box table{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+}
+
+.result-box table td{
+    border: 1px solid #cccccc;
+    padding: 8px 15px;
+    font-weight: 500;
     color: #000000;
+    width: 50%;
+    text-align: left;
+    font-size: 18px;
 }
 
-.containerOpciones .option{
-    background-color: #cccccc;
-    padding-left: 10px;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.cajaTrivia .containerOpciones .option:hover{
-    background-color: #fff56f;
-}
-
-.cajaTrivia .containerOpciones .option.respondida{
-    pointer-events: none;
-}
-
-.cajaTrivia .containerOpciones .option.acierto{
-    background-color: green;
-}
-
-.cajaTrivia .containerOpciones .option.error{
-    background-color: red;
+.result-box .btn{
+    margin-right: 20px;
 }
