@@ -172,7 +172,7 @@ body{
 
 .cajaTrivia .indicadorRespuestas div.correcto{
     background-color: #cccccc;
-    background-image: url("/img/correcto.png");
+    background-image: url("./img/correcto.png");
     background-size: cover;
     background-position: center;
 }
@@ -180,7 +180,7 @@ body{
 
 .cajaTrivia .indicadorRespuestas div.incorrecto{
     background-color: #cccccc;
-    background-image: url("/img/incorrecto.png");
+    background-image: url("./img/incorrecto.png");
     background-size: cover;
     background-position: center;
 }
