@@ -85,7 +85,19 @@ function resolver(element){
         actualizarIndicadorRespuestas("correcto");
         respuestasCorrectas++;
         marcador++;
-        
+        Toastify({
+            text: "Correcto",
+            duration: 1500,
+            gravity: "top",
+            position: "center",
+            style:{
+                background: "green",
+                fontSize: "20px",
+                fontWeight: 500,
+                fontFamily: "Montserrat",
+                color: "White"
+            }
+        }).showToast();
     }
     else{
         element.classList.add("incorrecto");
@@ -94,6 +106,19 @@ function resolver(element){
         for(i=0; i<largoOpciones; i++){
             if(parseInt(containerOpciones.children[i].id) === preguntaActual.answer){
                 containerOpciones.children[i].classList.add("correcto");
+                Toastify({
+                    text: "Incorrecto",
+                    duration: 1500,
+                    gravity: "top",
+                    position: "center",
+                    style:{
+                        background: "red",
+                        fontSize: "20px",
+                        fontWeight: 500,
+                        fontFamily: "Montserrat",
+                        color: "White"
+                    }
+                }).showToast();
             }
         }
     }
@@ -146,7 +171,19 @@ function siguiente(){
                 timeCount.style.background = "red";
                 restringido();
                 actualizarIndicadorRespuestas("incorrecto");
-
+                Toastify({
+                    text: "Tiempo agotado",
+                    duration: 1500,
+                    gravity: "top",
+                    position: "center",
+                    style:{
+                        background: "red",
+                        fontWeight: 500,
+                        fontSize: "20px",
+                        fontFamily: "Montserrat",
+                        color: "White"
+                    }
+                }).showToast();
             }
             
         }
