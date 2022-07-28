@@ -3,6 +3,7 @@ const numeroPregunta = document.querySelector(".numeroPregunta");
 const textoPregunta = document.querySelector(".textoPregunta");
 const containerOpciones = document.querySelector(".containerOpciones");
 const cajaTrivia = document.querySelector(".cajaTrivia");
+const cajaInicio = document.querySelector(".cajaInicio");
 const cajaTimer = document.querySelector(".timer");
 const timeCount = cajaTrivia.querySelector(".timer p span");
 const indicadorRespuestasContainer = document.querySelector(".indicadorRespuestas");
@@ -162,7 +163,7 @@ function siguiente(){
     }
 
 
-///////FINALIZAR FALTA!!!!!
+///////FINALIZAR
 
 function finalizar(){ 
     clearInterval(cronometro);    //Eliminar todos los elementos del box salvo el resultado al finalizar /// CAMBIAR POR ESTADISTICAS Y BOTON PARA REINICIAR
@@ -234,12 +235,13 @@ guardarPuntaje = e => {
     tablaScore.classList.remove("hidden");
     highScoreList.innerHTML = 
     highScores.map( score => {
-    return `<li class="high-score">${score.name} ---------------------- ${score.score}</li>`;
+    return `<li class="high-score">${score.name} ---------${score.score}</li>`;
 })
 .join("");
 }
 
-
-
-
-comenzar();
+function iniciar(){
+    cajaInicio.classList.add("hidden");
+    cajaTrivia.classList.remove("hidden");
+    comenzar();
+}
