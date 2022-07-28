@@ -121,18 +121,11 @@ function actualizarIndicadorRespuestas(markType){
 }
 
 
-
 function siguiente(){
     resultadoRespuesta.innerHTML = "";
     if(contadorPreguntas === cuestionario.length){
         console.log("trivia finalizada");
-        //resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total.";
         finalizar();
-        //if(marcador == cuestionario.length){
-        //    resultadoRespuesta.innerHTML = "Puntaje Perfecto! Respondiste todas las preguntas correctamente!";
-        //}
-        //else{
-        //}
     }
     else{
         traerPregunta();
@@ -152,11 +145,8 @@ function siguiente(){
                 timeCount.textContent = "00";
                 timeCount.style.background = "red";
                 restringido();
-                //resultadoRespuesta.innerHTML = "Se acabó el tiempo";
-                //resultadoRespuesta.classList.add("incorrecto");
-                //resultadoRespuesta.classList.remove("correcto");
                 actualizarIndicadorRespuestas("incorrecto");
-                //errores++;
+
             }
             
         }
@@ -167,12 +157,6 @@ function siguiente(){
 
 function finalizar(){ 
     clearInterval(cronometro);    //Eliminar todos los elementos del box salvo el resultado al finalizar /// CAMBIAR POR ESTADISTICAS Y BOTON PARA REINICIAR
-    //cajaTimer.remove();
-    //indicadorRespuestasContainer.remove();
-    //timeCount.remove();
-    //next.remove();
-    //textoPregunta.remove();
-    //containerOpciones.remove();
     cajaTrivia.classList.add("hidden");
     resultBox.classList.remove("hidden");
     resultadoRespuesta.classList.remove("correcto" , "incorrecto");
@@ -180,15 +164,7 @@ function finalizar(){
     resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total.";
 }
 
-/*
-function resetTrivia(){
-    contadorPreguntas = 0;
-    respuestasCorrectas = 0;
-    intentos = 0;
-    marcador = 0;
-}
 
-*/
 function reiniciar(){
     window.location.reload();
 }
@@ -210,7 +186,7 @@ const highScoreList = document.getElementById("highScoreList");
 
 
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-//const MAX_HIGH_SCORES = 10;
+
 
 
 username.addEventListener("keyup", () => {
@@ -218,7 +194,6 @@ username.addEventListener("keyup", () => {
 })
 
 guardarPuntaje = e => {
-    //console.log("cliqueo guardar");
     e.preventDefault();
     const score = {
         score: marcador,
