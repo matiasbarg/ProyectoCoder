@@ -145,7 +145,7 @@ function actualizarIndicadorRespuestas(markType){
     indicadorRespuestasContainer.children[contadorPreguntas-1].classList.add(markType)
 }
 
-
+/*
 function siguiente(){
     resultadoRespuesta.innerHTML = "";
     if(contadorPreguntas === cuestionario.length){
@@ -155,6 +155,12 @@ function siguiente(){
     else{
         traerPregunta();
     }
+    timeCount.style.background = "white";
+}
+*/
+
+function siguiente(){
+    contadorPreguntas === cuestionario.length ? finalizar() : traerPregunta();
     timeCount.style.background = "white";
 }
 
