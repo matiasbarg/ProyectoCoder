@@ -24,7 +24,7 @@ let timeValue = 10;
 
 ///GEOLOCALIZACION Y API OPENWEATHER
 
-if (navigator.geolocation) { //check if geolocation is available
+if (navigator.geolocation) { 
     navigator.geolocation.getCurrentPosition(function(position){
       //console.log(position);
     let latitud = position.coords.latitude;
@@ -36,8 +36,10 @@ if (navigator.geolocation) { //check if geolocation is available
             var ciudad = data['name'];
             var pais = data['sys']['country'];
             var temperatura = data['main']['temp']
-            console.log(data)
-            geoloc.innerHTML = "<h3>Ciudad: </h3> <p>" + ciudad + "</p> <h3>  Pais: </h3> <p>" + pais + "</p> <h3>  Temperatura: </h3> <p>" + temperatura + "º </p>";
+            var icon = "http://openweathermap.org/img/wn/"+data['weather'][0]['icon']+"@2x.png"
+            //console.log(data)
+            //console.log(icon)
+            geoloc.innerHTML = "<h3>Ciudad: </h3> <p>" + ciudad + "</p> <h3>  Pais: </h3> <p>" + pais + "</p> <h3>  Temperatura: </h3> <p>" + temperatura + "º </p> <img src="+icon+">";
         })
     })
 }
