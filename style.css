@@ -232,12 +232,41 @@ body{
     background-size: cover;
     background-position: center;
 }
+.cajaTrivia .indicadorRespuestas div.salteada{
+    background-color: #cccccc;
+    background-image: url("./img/salteada.png");
+    background-size: cover;
+    background-position: center;
+}
+.cajaTrivia .indicadorRespuestas div.cronometro{
+    background-color: #cccccc;
+    background-image: url("./img/cronometro.png");
+    background-size: cover;
+    background-position: center;
+}
 
 .resultadoRespuesta{
-    font-size: 22px;
+    text-align: left;
+    font-size: 20px;
     font-weight: 400;
-    padding: 10px 0;
-    margin: 0;
+    padding: 20px 50px;
+}
+
+.resultadoRespuesta img{
+    width: 50px;
+    
+}
+
+.resultadoRespuesta h3{
+    text-decoration: underline;
+}
+
+.resultadoRespuesta ul{
+    list-style: none;
+}
+.resultadoRespuesta ul li{
+    margin-top: 18px;
+
 }
 
 .correcto{

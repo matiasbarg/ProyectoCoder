@@ -21,6 +21,8 @@ let intentos = 0;
 let marcador = 0
 let cronometro;
 let timeValue = 10;
+let salteadas = 0;
+let agotadas = 0;
 
 ///GEOLOCALIZACION Y API OPENWEATHER
 
@@ -161,9 +163,36 @@ function actualizarIndicadorRespuestas(markType){
 }
 
 function siguiente(){
-    contadorPreguntas === cuestionario.length ? finalizar() : traerPregunta();
+    //contadorPreguntas === cuestionario.length ? finalizar() : traerPregunta();
+    if(contadorPreguntas === cuestionario.length){
+        finalizar();
+    }
+    else if(contadorPreguntas != intentos){
+        actualizarIndicadorRespuestas("salteada");
+        Toastify({
+            text: "Sin Responder",
+            duration: 1500,
+            gravity: "top",
+            position: "center",
+            style:{
+                background: "orange",
+                fontSize: "20px",
+                fontWeight: 500,
+                fontFamily: "Montserrat",
+                color: "White"
+            }
+        }).showToast();
+        salteadas++;
+        intentos++;
+        traerPregunta();
+    }
+    else{
+        traerPregunta();
+    }
     timeCount.style.background = "white";
+    //verificarSalto()
 }
+
 
     ///TEMPORIZADOR
 
@@ -177,14 +206,16 @@ function siguiente(){
                 timeCount.textContent = "00";
                 timeCount.style.background = "red";
                 restringido();
-                actualizarIndicadorRespuestas("incorrecto");
+                agotadas++;
+                intentos++;
+                actualizarIndicadorRespuestas("cronometro");
                 Toastify({
                     text: "Tiempo agotado",
                     duration: 1500,
                     gravity: "top",
                     position: "center",
                     style:{
-                        background: "red",
+                        background: "brown",
                         fontWeight: 500,
                         fontSize: "20px",
                         fontFamily: "Montserrat",
@@ -204,7 +235,8 @@ function finalizar(){
     geoloc.classList.remove("hidden");
     resultadoRespuesta.classList.remove("correcto" , "incorrecto");
     resultadoRespuesta.classList.add("margen"); //le doy mas margen arriba y abajo al resultado ya que queda solo en el box
-    resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total.";
+    //resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total.";
+    resultadoRespuesta.innerHTML = "<h3>Resumen</h3><ul><li><img src='./img/correcto.png'>Aciertos----------"+marcador+"</li><li><img src='./img/incorrecto.png'>Errores----------"+[cuestionario.length-marcador-salteadas-agotadas]+"</li><li><img src='./img/salteada.png'>Sin Responder----------"+salteadas+"</li><li><img src='./img/cronometro.png'>Tiempo Agotado----------"+agotadas+"</li></ul>"
 }
 
 function reiniciar(){
