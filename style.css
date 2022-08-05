@@ -15,6 +15,27 @@ body{
     outline: none;
 }
 
+.cajaGeo{
+    max-width: 600px;
+    background-color: #ffffff;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cajaGeo p{
+    font-size: 15px;
+}
+
+.cajaGeo h3{
+    font-size: 16px;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
 .cajaTrivia,
 .cajaInicio{
     max-width: 700px;
@@ -29,8 +50,6 @@ body{
     text-align: center;
     margin-bottom: 20px;
 }
-
-
 
 .cajaInicio ul{
     background-color: #ffffff;
@@ -48,6 +67,7 @@ body{
     margin-top: 20px;
 }
 
+
 .cajaTrivia p{
     font-size:  16px;
     margin-bottom: 10px;
@@ -64,7 +84,6 @@ body{
     margin-top: 10px;
     text-align: end;
     width: 100%;
-
 }
 
 .timer p{
@@ -170,7 +189,6 @@ body{
     background-color: red;
 }
 
-
 .cajaTrivia .containerOpciones .option.correcto,
 .cajaTrivia .containerOpciones .option.incorrecto{
     color: #ffffff;
@@ -179,7 +197,6 @@ body{
 .cajaTrivia .btn{
     margin: 15px 0;
 }
-
 
 .cajaTrivia .indicadorRespuestas{
     border-top: 1px solid #cccccc;
@@ -201,7 +218,6 @@ body{
     background-size: cover;
     background-position: center;
 }
-
 
 .cajaTrivia .indicadorRespuestas div.incorrecto{
     background-color: #cccccc;
@@ -236,7 +252,6 @@ body{
     padding: 30px;
     border-radius: 10px;
     text-align: center;
-
 }
 
 .result-box h3{
@@ -254,7 +269,6 @@ body{
     font-size: 20px;
     text-align: center;
 }
-
 
 .result-box .btn{
     display: block;
@@ -274,10 +288,8 @@ body{
     margin: 20px auto;
 }
 
-
 .tablaScore ul{
     margin: 50px;
-    
 }
 
 .tablaScore ul li{
@@ -290,4 +302,3 @@ body{
 .tablaScore ul li:hover{
     transform: scale(1.1);
 }
-

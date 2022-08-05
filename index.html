@@ -9,6 +9,8 @@
     <title>Trivia - Preguntas y Respuestas</title>
 </head>
 <body>
+    <div class="cajaGeo">
+    </div>
     <div class="cajaInicio">
         <h2>Instrucciones</h2>
         <ul>
@@ -22,29 +24,20 @@
     </div>
     <div class="cajaTrivia cajaCustom hidden">
         <div class="numeroPregunta">
-            
         </div>
         <div class="timer">
             <p>Tiempo restante <span class=".timer_sec">10</span></p>
         </div>
-        <div class="textoPregunta"> 
-
+        <div class="textoPregunta">
         </div>
-            
-        
-        <div class="containerOpciones"> 
-
+        <div class="containerOpciones">
         </div>
         <div class="preguntaSiguiente">
             <button type="button" class="btn" onclick="siguiente()">Siguiente</button>
         </div>
-        
         <div class="indicadorRespuestas">
-
         </div>
     </div>
-
-
     <div class="result-box hidden">
         <div class="resultadoRespuesta"></div>
         <h3>Ingrese su Nombre</h3>
@@ -57,12 +50,8 @@
         <ul id="highScoreList"></ul>
         <button class="btn" id="reiniciar" onclick="reiniciar()">Reiniciar</button>
     </div>
-
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="cuestionario.js"></script>
     <script src="app.js"></script>
-
-
-    
 </body>
 </html>
