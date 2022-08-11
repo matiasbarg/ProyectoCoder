@@ -1,5 +1,3 @@
-//ARRAY CON LAS PREGUNTAS - pregunta, opciones y respuesta
-//agrego algunas preguntas con imagenes
 
 const cuestionario = [
     {

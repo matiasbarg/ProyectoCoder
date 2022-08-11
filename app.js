@@ -24,29 +24,21 @@ let timeValue = 10;
 let salteadas = 0;
 let agotadas = 0;
 
-///GEOLOCALIZACION Y API OPENWEATHER
-
 if (navigator.geolocation) { 
     navigator.geolocation.getCurrentPosition(function(position){
-      //console.log(position);
     let latitud = position.coords.latitude;
     let longitud = position.coords.longitude;
-      //console.log(latitud , longitud)
     fetch('https://api.openweathermap.org/data/2.5/weather?lat='+latitud+'&lon='+longitud+'&appid=632518e204a1c3f812703e1ee7588b7c&units=metric')
         .then(response => response.json())
         .then(data => {
             var ciudad = data['name'];
             var pais = data['sys']['country'];
             var temperatura = data['main']['temp']
-            var icon = "http://openweathermap.org/img/wn/"+data['weather'][0]['icon']+"@2x.png"
-            //console.log(data)
-            //console.log(icon)
+            var icon = "https://openweathermap.org/img/wn/"+data['weather'][0]['icon']+"@2x.png"
             geoloc.innerHTML = "<h3>Ciudad: </h3> <p>" + ciudad + "</p> <h3>  Pais: </h3> <p>" + pais + "</p> <h3>  Temperatura: </h3> <p>" + temperatura + "º </p> <img src="+icon+">";
         })
     })
 }
-
-//PREGUNTAS DISPONIBLES
 
 function definirPreguntasDisponibles(){
     const totalPreguntas = cuestionario.length;
@@ -55,31 +47,27 @@ function definirPreguntasDisponibles(){
     }
 }
 
-//TRAER PREGUNTA
-
-
 function traerPregunta(){
-    numeroPregunta.innerHTML = "Pregunta " + (contadorPreguntas + 1) + " de " + cuestionario.length; //contador de preguntas
-    const indexPreguntas = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)]  //random para laspreguntas
+    numeroPregunta.innerHTML = "Pregunta " + (contadorPreguntas + 1) + " de " + cuestionario.length;
+    const indexPreguntas = preguntasDisponibles[Math.floor(Math.random() * preguntasDisponibles.length)] 
     preguntaActual = indexPreguntas;
-    textoPregunta.innerHTML = preguntaActual.q;   //texto pregunta actual
+    textoPregunta.innerHTML = preguntaActual.q;  
 
     const index1 = preguntasDisponibles.indexOf(indexPreguntas);
-    preguntasDisponibles.splice(index1,1);  //saco la pregunta actual de preguntas disponibles
-    //mostrar imagen si la propiedad foto existe
+    preguntasDisponibles.splice(index1,1); 
     if(preguntaActual.hasOwnProperty("foto")){
         const img = document.createElement("img");
         img.src = preguntaActual.foto;
         textoPregunta.appendChild(img);
     }
 
-    const largoOpciones = preguntaActual.options.length; //cantidad de opciones a elegir
+    const largoOpciones = preguntaActual.options.length;
     for(let i=0; i<largoOpciones; i++){
         opcionesDisponibles.push(i)
     }
     containerOpciones.innerHTML = '';
     for(let i=0; i<largoOpciones; i++){
-        const optionIndex = opcionesDisponibles[Math.floor(Math.random() * opcionesDisponibles.length)]; //random para las opciones
+        const optionIndex = opcionesDisponibles[Math.floor(Math.random() * opcionesDisponibles.length)];
         const index2 = opcionesDisponibles.indexOf(optionIndex);
         opcionesDisponibles.splice(index2,1);
         const option = document.createElement("div");
@@ -143,6 +131,7 @@ function resolver(element){
     restringido()
 }
 
+
 function restringido(){
     const largoOpciones = containerOpciones.children.length;
     for(let i=0; i<largoOpciones; i++){
@@ -163,7 +152,6 @@ function actualizarIndicadorRespuestas(markType){
 }
 
 function siguiente(){
-    //contadorPreguntas === cuestionario.length ? finalizar() : traerPregunta();
     if(contadorPreguntas === cuestionario.length){
         finalizar();
     }
@@ -190,11 +178,7 @@ function siguiente(){
         traerPregunta();
     }
     timeCount.style.background = "white";
-    //verificarSalto()
 }
-
-
-    ///TEMPORIZADOR
 
     function startTimer(time){
         cronometro = setInterval(timer, 1000);
@@ -226,16 +210,13 @@ function siguiente(){
         }
     }
 
-///////FINALIZAR
-
 function finalizar(){
-    clearInterval(cronometro);    //Eliminar todos los elementos del box salvo el resultado al finalizar /// CAMBIAR POR ESTADISTICAS Y BOTON PARA REINICIAR
+    clearInterval(cronometro);    
     cajaTrivia.classList.add("hidden");
     resultBox.classList.remove("hidden");
     geoloc.classList.remove("hidden");
     resultadoRespuesta.classList.remove("correcto" , "incorrecto");
-    resultadoRespuesta.classList.add("margen"); //le doy mas margen arriba y abajo al resultado ya que queda solo en el box
-    //resultadoRespuesta.innerHTML = "Trivia finalizada. Hiciste " + marcador + " puntos en total.";
+    resultadoRespuesta.classList.add("margen"); 
     resultadoRespuesta.innerHTML = "<h3>Resumen</h3><ul><li><img src='./img/correcto.png'>Aciertos----------"+marcador+"</li><li><img src='./img/incorrecto.png'>Errores----------"+[cuestionario.length-marcador-salteadas-agotadas]+"</li><li><img src='./img/salteada.png'>Sin Responder----------"+salteadas+"</li><li><img src='./img/cronometro.png'>Tiempo Agotado----------"+agotadas+"</li></ul>"
 }
 
@@ -250,6 +231,7 @@ function comenzar(){
     traerPregunta();
     indicadorRespuestas();
 }
+
 const username = document.getElementById("username");
 const guardar = document.getElementById("guardar");
 const tablaScore = document.querySelector(".tablaScore");

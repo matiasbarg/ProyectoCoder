@@ -166,7 +166,6 @@ body{
     height: 200px;
 }
 
-
 .cajaTrivia .containerOpciones .option{
     background-color: #cccccc;
     padding: 15px;
@@ -226,7 +225,6 @@ body{
     background-size: cover;
     background-position: center;
 }
-
 
 .cajaTrivia .indicadorRespuestas div.incorrecto{
     background-color: #cccccc;
